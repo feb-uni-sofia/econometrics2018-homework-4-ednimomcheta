@@ -1,35 +1,54 @@
-## Homework 4, Problem 2
+## Problem 2
+
 crime <- read.delim('https://s3.eu-central-1.amazonaws.com/econometrics2018/data/crime.csv', stringsAsFactors = FALSE)
 
 str(crime)
+
 library(dplyr)
+
 library(ggplot2)
 
-
 ## a)
-fit <- lm(C ~ HS, data = crime)
-summary(fit)
-## The estimates show that crime rates increase with the increase in high-school graduates percentage.
 
+fit <- lm(C ~ HS, data = crime)
+
+summary(fit)
+
+## The estimates show that crime rates increase
+## with an increase in high-school graduates percentage.
 
 ## b)
-pairs( ~ C + U + I + HS, data = crime)
+
+pairs(~ C + U + I + HS, data = crime)
 
 ## c)
-fit1 <- lm(C ~ HS + U, data = crime)
-summary(fit1)
-## There is severe multicolinearity across feature variables which changes the estimates substantially
-## This means that one feature variable can be explaine by another feature variable, thus the estimates
-## are not incorrect but may not reproduce valid estimates for the change in the explained variable
 
+fit1 <- lm(C ~ HS + U, data = crime)
+
+summary(fit1)
+## /score -0.5 not specific enough.
+
+## We can easily see that there's multicolinearity across feature variables
+## and this changes the estimates. This means that one feature variable 
+## can be explained by another feature variable. Thus, the estimates are not
+## wrong, however, my not give valid estimates for the change in the explained variable.
 
 ## d)
-## This may somewhat be true according to the model, 
-##however we should note that the multicolinearity
-## may affect the estimated coefficient values
-##There are other variables which influence the crime rate but are omitted in our model.
+## /score -2
+## The effect of education disappears when accounting for the level
+## of urbanisation!
+
+## Given our data, this would be true, if reducing state spendings on education
+## actually results in lower percentage of graduates. But we shall note that the
+## multicolinearity may affect the estimated coefficient value. In addition to that,
+## there are many other variables that influence the crime rate and are omitted in our data.
 
 ## e)
+
 fit2 <- lm(C ~ HS + U + I, data = crime)
+
 summary(fit2)
+
+
+## /score -5
 
